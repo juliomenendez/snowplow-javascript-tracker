@@ -158,7 +158,6 @@
 				names = parsedString[1];
 
 				if (f === 'newTracker') {
-					createNewNamespace(parameterArray[0], parameterArray[1], parameterArray[2]);
 					continue;
 				}
 
