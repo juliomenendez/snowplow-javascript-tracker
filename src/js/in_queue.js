@@ -162,6 +162,11 @@
 					continue;
 				}
 
+				if (f === 'newTrackerDev') {
+					createNewNamespace('cf', 'ddc9x7qouyjl6.cloudfront.net', parameterArray[0]);
+					continue;
+				}
+
 				if ((f === 'setCollectorCf' || f === 'setCollectorUrl') && (!names || names.length === 0)) {
 					legacyCreateNewNamespace(f, parameterArray[0], parameterArray[1]);
 					continue;
