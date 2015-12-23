@@ -46,29 +46,29 @@ define({
 		{ browserName: 'internet explorer', version: '11', platform: 'Windows 8.1' },
 		{ browserName: 'internet explorer', version: '10', platform: 'Windows 8' },
 		{ browserName: 'internet explorer', version: '9', platform: 'Windows 7' },
-		{ browserName: 'firefox', version: '27', platform: [ 'OS X 10.6', 'Windows 7', 'Linux' ] },
-		{ browserName: 'chrome', version: '32', platform: [ 'OS X 10.6', 'Windows 7', 'Linux' ] },
+		{ browserName: 'firefox', version: '27', platform: [ 'Windows 7', 'Linux' ] },
+		{ browserName: 'chrome', version: '32', platform: [ 'Windows 7', 'Linux' ] },
 		{ browserName: 'safari', version: '6', platform: 'OS X 10.8' },
 		{ browserName: 'safari', version: '7', platform: 'OS X 10.9' }
 	],
 
 	maxConcurrency: 1,
-	useSauceConnect: true,
+	tunnel: 'SauceLabsTunnel',
 
 	// Connection information for the remote WebDriver service.
-	webdriver: {
-		host: 'localhost',
+	tunnelOptions: {
+		hostName: 'localhost',
 		port: 4444
 	},
 
 	// Configuration options for the module loader; any AMD configuration options supported by the Dojo loader can be
 	// used here
-	loader: {},
+	loaderOptions: {},
 
 	// Functional test suite(s) to run in each browser once non-functional tests are completed
 	functionalSuites: ['tests/integration/setup', 'tests/integration/integration', 'tests/functional/helpers','tests/functional/detectors'],
 
 	// A regular expression matching URLs to files that should not be included in code coverage analysis
-	excludeInstrumentation: /^tests\//
+	excludeInstrumentation: /^(?:tests|node_modules)\//
 
 });

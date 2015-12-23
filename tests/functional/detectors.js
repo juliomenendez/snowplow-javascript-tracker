@@ -50,14 +50,12 @@ define([
 			3343029130, // IE9 Windows
 			1101697779, // IE10
 			2209912060, // IE11
-			2265977041, // Firefox 27.0 Mac
 			1268007327,  // Firefox 27.0 XP
-			438083159,  // Firefox 27.0 Linux
-			3528351619, // Chrome 32.0 Mac OS X
+			1873889954,  // Firefox 27.0 Linux
 			2180938465, // Chrome 32.0 Windows NT
-			3829122699, // Chrome 32.0 Linux
-			2694331068, // Safari 7.0 Mac
-			2336697549  // Safari 6.0.5 Mac
+			2184238358, // Chrome 32.0 Linux
+			1749770073, // Safari 7.1.7 Mac
+			1244201874  // Safari 6.2.7 Mac
 		];
 
 	registerSuite({
@@ -68,9 +66,10 @@ define([
 
 			return this.remote
 				.get(require.toUrl('tests/pages/detectors.html'))
-				.waitForElementByCssSelector('body.loaded', 5000)
-				.elementById('detectViewport')
-				.text()
+				.setFindTimeout(5000)
+				.findByCssSelector('body.loaded')
+				.findById('detectViewport')
+				.getVisibleText()
 				.then(function (text) {
 					var dimensions = text.split('x');
 					assert.include(expectedViewportWidths, parseInt(dimensions[0]), 'Viewport width is valid');
@@ -81,9 +80,10 @@ define([
 		'Detect document size': function () {
 			return this.remote
 				.get(require.toUrl('tests/pages/detectors.html'))
-				.waitForElementByCssSelector('body.loaded', 5000)
-				.elementById('detectDocumentDimensions')
-				.text()
+				.setFindTimeout(5000)
+				.findByCssSelector('body.loaded')
+				.findById('detectDocumentDimensions')
+				.getVisibleText()
 				.then(function (text) {
 					var dimensions = text.split('x');
 					assert.include(expectedViewportWidths, parseInt(dimensions[0]), 'Document width is valid');
@@ -95,9 +95,10 @@ define([
 
 			return this.remote
 				.get(require.toUrl('tests/pages/detectors.html'))
-				.waitForElementByCssSelector('body.loaded', 5000)
-				.elementById('localStorageAccessible')
-				.text()
+				.setFindTimeout(5000)
+				.findByCssSelector('body.loaded')
+				.findById('localStorageAccessible')
+				.getVisibleText()
 				.then(function (text) {
 					assert.strictEqual(text, 'true', 'Detect localStorage accessibility');
 				});
@@ -107,9 +108,10 @@ define([
 
 			return this.remote
 				.get(require.toUrl('tests/pages/detectors.html'))
-				.waitForElementByCssSelector('body.loaded', 5000)
-				.elementById('hasSessionStorage')
-				.text()
+				.setFindTimeout(5000)
+				.findByCssSelector('body.loaded')
+				.findById('hasSessionStorage')
+				.getVisibleText()
 				.then(function (text) {
 					assert.strictEqual(text, 'true', 'Detect sessionStorage');
 				});
@@ -119,9 +121,10 @@ define([
 
 			return this.remote
 				.get(require.toUrl('tests/pages/detectors.html'))
-				.waitForElementByCssSelector('body.loaded', 5000)
-				.elementById('hasCookies')
-				.text()
+				.setFindTimeout(5000)
+				.findByCssSelector('body.loaded')
+				.findById('hasCookies')
+				.getVisibleText()
 				.then(function (text) {
 					assert.equal(text, '1', 'Detect whether cookies can be set');
 				});
@@ -131,9 +134,10 @@ define([
 
 			return this.remote
 				.get(require.toUrl('tests/pages/detectors.html'))
-				.waitForElementByCssSelector('body.loaded', 5000)
-				.elementById('detectTimezone')
-				.text()
+				.setFindTimeout(5000)
+				.findByCssSelector('body.loaded')
+				.findById('detectTimezone')
+				.getVisibleText()
 				.then(function (text) {
 					assert.include(['UTC', 'America/Los_Angeles'], text, 'Detect the timezone');
 				});
@@ -143,9 +147,10 @@ define([
 
 			return this.remote
 				.get(require.toUrl('tests/pages/detectors.html'))
-				.waitForElementByCssSelector('body.loaded', 5000)
-				.elementById('detectSignature')
-				.text()
+				.setFindTimeout(5000)
+				.findByCssSelector('body.loaded')
+				.findById('detectSignature')
+				.getVisibleText()
 				.then(function (text) {
 					assert.include(expectedSignatures, parseInt(text), 'Create a user fingerprint based on browser features');
 				});
@@ -155,9 +160,10 @@ define([
 
 			return this.remote
 				.get(require.toUrl('tests/pages/detectors.html'))
-				.waitForElementByCssSelector('body.loaded', 5000)
-				.elementById('detectBrowserFeatures')
-				.text()
+				.setFindTimeout(5000)
+				.findByCssSelector('body.loaded')
+				.findById('detectBrowserFeatures')
+				.getVisibleText()
 				.then(function (text) {
 					var features = JSON.parse(text);
 					// The only features which are the same for all tested browsers
